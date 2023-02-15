@@ -1,0 +1,22 @@
+<div>
+<h1>Welcome to Snake Game!</h1>
+<form #userForm="ngForm"
+  (submit)="submit(userForm, nameElement.value, emailElement.value)">
+<input name="name"
+    #nameElement
+    minlength="2"
+    required
+    ngModel
+    placeholder="Name"/>
+<input name="email"
+    #emailElement
+    #emailModel="ngModel"
+    required
+    pattern="^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$"
+    ngModel
+    placeholder="E-mail"/>
+<p *ngIf="emailModel.touched && emailModel.invalid">Check your address e-mail. It is wrong!</p>
+<button 
+[disabled]="userForm.valid === false">Start</button>
+</form>
+</div>

@@ -1,0 +1,36 @@
+
+<p>Hello, {{playersHistory[0].name }}!</p>
+<p>GAME STATUS: {{gameStatus}} </p>
+<p>SCORE: {{points}}</p>
+<p>TIME: {{time}} seconds</p>
+<ngx-snake #game
+(foodEaten)="pointsCounter()"
+(gameOver)="gameOver()"
+></ngx-snake>
+
+<button (click)="game.actionStart(); startAndCountdown()" [disabled]="!enabledButtons">Start</button>
+<button (click)="game.actionStop(); stopGameAndTimer()" [disabled]="!enabledButtons">Stop</button>
+<button (click)="game.actionReset(); resetGameAndTimer()">Reset</button>
+<button (click)="game.actionUp(); addUpAction()" [disabled]="!enabledButtons">Up</button>
+<button (click)="game.actionLeft(); addLeftAction()" [disabled]="!enabledButtons">Left</button>
+<button (click)="game.actionRight(); addRightAction()" [disabled]="!enabledButtons" >Right</button>
+<button (click)="game.actionDown(); addDownAction()" [disabled]="!enabledButtons" >Down</button>
+
+<div>
+<p>History</p>
+<label>Sort by</label>
+			<select [(ngModel)]="sortDirection">
+                <option value="asc">Lastes first</option>
+                <option value="desc">Oldest first</option>
+            </select>
+<label >Filter by action: </label>
+			<select class="form-select" [(ngModel)]="filterValue">
+                <option *ngFor="let action of actionsOptions"
+                    [value]="action">{{action}}
+                </option>
+            </select>            
+<div *ngFor="let item of gameHistory | sort: sortDirection | filter: filterValue">
+    <span>{{item.action}} -</span> <span> {{item.time}} sec</span>
+</div>
+<div>
+
