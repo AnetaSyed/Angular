@@ -1,0 +1,49 @@
+.wrapper {
+    font-family: "Papyrus";   
+    font-weight: bolder;
+    text-shadow: 2px 2px 2px bisque;
+    font-size: 25px;
+}
+
+h2 {
+    text-align: center;
+    font-size: 50px;
+}
+
+#game-status {
+    text-align: center;
+}
+
+.float {
+    float:left;
+    margin: 30px
+}
+
+.history-view {
+    margin-left: 15px;
+    margin-bottom: 15px;
+}
+
+.buttons-section {
+    text-align: center;
+    button {
+        font-weight: bold;
+    }
+}
+
+#game-history {
+    width: 500px;
+    height: 300px;
+    overflow: scroll;
+    background-color: rgb(238, 233, 233);
+}
+
+.td-action {
+    width: 400px;
+}
+
+.td-time {
+    width: 100px;
+    text-align: center;
+  
+}

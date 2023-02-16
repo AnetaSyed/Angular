@@ -1,0 +1,29 @@
+h1 {
+    font-family: 'Papyrus';
+    font-weight: bolder;
+    font-size: 75px;
+    text-align: center;
+    text-shadow: 2px 2px 2px bisque;
+}
+
+form {
+    font-family: 'Papyrus';
+    text-align: center;
+    input {
+        font-family: 'Papyrus';
+        width: 250px;
+        margin: 0;
+    }
+    p {
+        margin: 0;
+        font-family: 'Papyrus';
+        color: bisque;
+        font-weight: bold;
+       
+    }
+   
+    button {
+        font-family: 'Papyrus';
+        width: 75px;
+    }
+}

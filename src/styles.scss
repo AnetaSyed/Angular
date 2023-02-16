@@ -1,1 +1,16 @@
 /* You can add global styles to this file, and also import other style files */
+body {
+background-image: url("./assets/image/pixgreen.png");
+
+}
+
+ngx-snake {
+    ngx-snake-tile {
+        background: darkgray;
+        &.free {
+            div {
+                background: rgb(238, 233, 233);
+            }
+        }
+    }
+}

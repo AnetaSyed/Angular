@@ -1,7 +1,7 @@
-.hidden {
-    visibility: hidden;
-  }
-
-.not-hidden {
-    visibility: visible;
-  }
+#exit {
+    position: absolute;
+    top: 50px;
+    right: 50px;
+    width: 50px;
+    font-weight: bold;
+}

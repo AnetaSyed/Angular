@@ -24,7 +24,7 @@ enum Actions {
   styleUrls: ['./game-page.component.scss']
 })
 export class GamePageComponent implements OnInit {
-  public gameStatus: string = "Press Start and lets play!";
+  public gameStatus: string = "Press START and lets play!";
   public points: number = 0;
   public time: number = 0;
   public timer: any;
@@ -96,13 +96,7 @@ export class GamePageComponent implements OnInit {
   } 
 
   private generateGameActionsObj(action: Actions) {
-    // this.gameHistory.push(
-    //   {
-    //     action: action,
-    //     time: this.time,
-    //   }
-    // )
-    this.gameHistory = [...this.gameHistory, 
+     this.gameHistory = [...this.gameHistory, 
       {
         action: action,
         time: this.time,

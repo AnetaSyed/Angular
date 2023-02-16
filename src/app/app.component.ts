@@ -11,9 +11,8 @@ export interface PlayerData {
 })
 
 export class AppComponent {
-  title = 'Snake';
+  title = 'Snake Game';
   public name: string;
-  // public email: string;
   public playersHistory: Array<PlayerData> = [];
 
   constructor() {}

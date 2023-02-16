@@ -7,8 +7,6 @@ import { GameActions } from './game-page/game-page.component';
 export class FilterPipe implements PipeTransform {
 
   transform(value: GameActions[], actionToFilterBy: string) {
-
-    //if (value.length === 0 || !actionToFilterBy) {
     if (actionToFilterBy === 'All') {
       return value;
     }
