@@ -1,13 +1,1 @@
-<div class="container">
-    <div *ngIf="!name">
-        <app-intro-page 
-        (userDataReady)="onPlayerDataReady($event)">
-        </app-intro-page>
-    </div>
-    <div *ngIf="name">
-        <app-game-page [playersHistory]="playersHistory">
-        </app-game-page>
-        <br>
-        <button id="exit" (click)="goToIntroPage()">Exit</button>
-    </div>
-</div>
+<router-outlet></router-outlet>

@@ -1,6 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { PlayerData } from '../app.component';
-
+import { Component, OnInit } from '@angular/core';
+import {Router} from '@angular/router';
+import { PlayerDataService } from '../player-data.service';
 export interface GameActions {
   action: string;
   time: number;
@@ -24,18 +24,20 @@ enum Actions {
   styleUrls: ['./game-page.component.scss']
 })
 export class GamePageComponent implements OnInit {
+  public playerName: string
   public gameStatus: string = "Press START and lets play!";
   public points: number = 0;
   public time: number = 0;
   public timer: any;
   public enabledButtons: boolean = true;
   public gameHistory: Array<GameActions> = [];
-  @Input() public playersHistory: Array<PlayerData> = [];
   public sortDirection: string = "asc";
   public filterValue: string = "All";
   public actionsOptions: Array<string> = ["All", "Start", "Poused", "End", "Left", "Up", "Right", "Down", "Game Over", "Growe"]
 
-  constructor() { }
+  constructor(private _router: Router, private _playerData: PlayerDataService) { 
+    this.playerName = this._playerData.readPlayerName()
+  }
 
   ngOnInit(): void {
   }
@@ -85,6 +87,9 @@ export class GamePageComponent implements OnInit {
 
   }
 
+  public goToIntroPage() {
+    this._router.navigate(['/intro-page'])
+  }
 
   private endGame(action: Actions, active: boolean) {
     this.gameStatus = "Press Start and lets play!"
@@ -103,6 +108,5 @@ export class GamePageComponent implements OnInit {
       }
     ]
   }
-
 
 } 

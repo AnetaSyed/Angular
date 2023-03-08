@@ -1,6 +1,6 @@
 
 <div class="wrapper">
-    <h2>HELLO, {{playersHistory[0].name | uppercase }}!</h2>
+    <h2>HELLO, {{playerName | uppercase }}!</h2>
     <p id="game-status">{{gameStatus}} </p>
 
     <div class="float">
@@ -59,4 +59,5 @@
         </div>
     </div>
     </div>
+    <button id="exit" (click)="goToIntroPage()">Exit</button>
 </div>

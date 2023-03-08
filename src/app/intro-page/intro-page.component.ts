@@ -1,5 +1,6 @@
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
-import { PlayerData } from '../app.component';
+import {Router} from '@angular/router'
+import { PlayerDataService } from '../player-data.service';
 
 @Component({
   selector: 'app-intro-page',
@@ -7,19 +8,14 @@ import { PlayerData } from '../app.component';
   styleUrls: ['./intro-page.component.scss']
 })
 export class IntroPageComponent implements OnInit {
-  public userName: string;
-  public emailAddress: string;
-  @Output() public userDataReady = new EventEmitter<PlayerData>();
 
-  constructor() { }
+  constructor(private _router: Router, private _playerData: PlayerDataService) { }
 
   ngOnInit(): void {
   }
 
   public submit(form: any, name: string, email: string) {
-    this.userDataReady.emit({
-      name: name,
-      email: email,
-    }) 
+    this._playerData.setPlayerData(name, email)
+    this._router.navigate(['/game-page'])    
 }
 }

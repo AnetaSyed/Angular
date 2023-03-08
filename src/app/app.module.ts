@@ -8,6 +8,7 @@ import { GamePageComponent } from './game-page/game-page.component';
 import { FormsModule } from '@angular/forms';
 import { SortPipe } from './sort.pipe';
 import { FilterPipe } from './filter.pipe';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,12 @@ import { FilterPipe } from './filter.pipe';
   imports: [
     BrowserModule,
     NgxSnakeModule,
-    FormsModule
+    FormsModule,
+    RouterModule.forRoot ([
+      {path: 'intro-page', component: IntroPageComponent},
+      {path: 'game-page', component: GamePageComponent},
+      {path: '**', redirectTo: 'intro-page'},
+    ])
   ],
   providers: [],
   bootstrap: [AppComponent]
