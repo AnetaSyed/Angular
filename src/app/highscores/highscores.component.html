@@ -1,0 +1,22 @@
+<div class="float">
+        <div class="history-view">
+            <label>Sort: </label>
+                <select [(ngModel)]="sortDirection">
+                    <option value="asc">ascending</option>
+                    <option value="desc">descending</option>
+                </select>   
+    </div>
+<div id="highscore-history">            
+        <div>
+            <table>
+                <tr>
+                    <th class="td-name">Name</th>
+                    <th class="td-score">Score</th>
+                </tr>    
+                <tr *ngFor="let score of highscoresData.slice(0, 10) | sort: 'score': sortDirection">
+                    <td class="td-name">{{score.name}}</td>
+                    <td class="td-score">{{score.score}}</td>
+                </tr>
+            </table>
+        </div>
+    </div>

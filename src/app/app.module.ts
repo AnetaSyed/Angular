@@ -9,6 +9,8 @@ import { FormsModule } from '@angular/forms';
 import { SortPipe } from './sort.pipe';
 import { FilterPipe } from './filter.pipe';
 import { RouterModule } from '@angular/router';
+import {HttpClientModule} from '@angular/common/http';
+import { HighscoresComponent } from './highscores/highscores.component'
 
 @NgModule({
   declarations: [
@@ -16,7 +18,8 @@ import { RouterModule } from '@angular/router';
     IntroPageComponent,
     GamePageComponent,
     SortPipe,
-    FilterPipe
+    FilterPipe,
+    HighscoresComponent
   ],
   imports: [
     BrowserModule,
@@ -26,7 +29,8 @@ import { RouterModule } from '@angular/router';
       {path: 'intro-page', component: IntroPageComponent},
       {path: 'game-page', component: GamePageComponent},
       {path: '**', redirectTo: 'intro-page'},
-    ])
+    ]),
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -5,15 +5,26 @@ import { GameActions } from './game-page/game-page.component';
   name: 'sort'
 })
 
-export class SortPipe implements PipeTransform {
-  transform(values: GameActions[], dir = "asc"): GameActions[] {
+// export class SortPipe implements PipeTransform {
+//   transform(values: GameActions[], dir = "asc"): GameActions[] {
     
-    return values.sort((a, b) => {
+//     return values.sort((a, b) => {
+//       if (dir === "asc") {
+//         return a["time"] - b["time"];
+//       }
+//       return b["time"] - a["time"];
+//     });
+//   }
+// }
+
+export class SortPipe implements PipeTransform {
+  transform(values: any, field: any,  dir = "asc") {
+    
+    return values.sort((a: any, b: any) => {
       if (dir === "asc") {
-        return a["time"] - b["time"];
+        return a[field] - b[field];
       }
-      return b["time"] - a["time"];
+      return b[field] - a[field];
     });
   }
 }
-

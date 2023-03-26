@@ -2,7 +2,7 @@
   <h1>Welcome to Snake Game!</h1>
 
   <form #userForm="ngForm"
-    (submit)="submit(userForm, nameElement.value, emailElement.value)">
+    (submit)="submit(userForm, nameElement.value, studentIDElement.value)">
 
     <div>
       <input name="name"
@@ -19,14 +19,17 @@
     <br/>
 
     <div>
-      <input name="email"
-          #emailElement
-          #emailModel="ngModel"
+      <input name="studentID"
+          #studentIDElement
+          #studentIDModel="ngModel"
           required
-          pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+          
           ngModel
-          placeholder="E-mail"/>
-      <p *ngIf="emailModel.touched && emailModel.invalid">Invalid e-mail format (ex. xyz@zyx.com)!</p>
+          placeholder="Student ID"
+          (click)="changeErrorAlert()"/>
+      <p *ngIf="studentIDModel.touched && studentIDModel.invalid">Invalid student ID!</p>
+      <p *ngIf="errorAlert">Invalid student ID! Check your ID.</p>
+
     </div>
 
     <br/><br/>

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
 import { PlayerDataService } from '../player-data.service';
+import { ScoreService } from '../score.service';
 export interface GameActions {
   action: string;
   time: number;
@@ -23,10 +24,11 @@ enum Actions {
   templateUrl: './game-page.component.html',
   styleUrls: ['./game-page.component.scss']
 })
-export class GamePageComponent implements OnInit {
+export class GamePageComponent {
   public playerName: string
+  public playerID: string
   public gameStatus: string = "Press START and lets play!";
-  public points: number = 0;
+  public points: number = 123;
   public time: number = 0;
   public timer: any;
   public enabledButtons: boolean = true;
@@ -34,16 +36,19 @@ export class GamePageComponent implements OnInit {
   public sortDirection: string = "asc";
   public filterValue: string = "All";
   public actionsOptions: Array<string> = ["All", "Start", "Poused", "End", "Left", "Up", "Right", "Down", "Game Over", "Growe"]
-
-  constructor(private _router: Router, private _playerData: PlayerDataService) { 
-    this.playerName = this._playerData.readPlayerName()
+  public playerScore: any = {
+    name: "",
+    game: "snake",
+    score: 0
   }
-
-  ngOnInit(): void {
+  constructor(private _router: Router, private _playerData: PlayerDataService, private _playerScore: ScoreService) { 
+    this.playerName = this._playerData.readPlayerName();
+    this.playerID = this._playerData.readPlayerID().toString()
   }
+  
+ 
 
   public startAndCountdown() {
-    console.log(this.timer)
     this.gameStatus = "Game started!"
     this.timer = setInterval(() => {
       this.time++
@@ -58,6 +63,10 @@ export class GamePageComponent implements OnInit {
   }
 
   public resetGameAndTimer() {
+    this.playerScore.name = this.playerName;
+    this.playerScore.score = this.points;
+    this._playerScore.load(this.playerScore, this.playerID).subscribe()
+    console.log()
     this.endGame(Actions.Reset, true)
   }
 
