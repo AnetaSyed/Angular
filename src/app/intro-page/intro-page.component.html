@@ -1,41 +1,7 @@
 <div>
   <h1>Welcome to Snake Game!</h1>
 
-  <form #userForm="ngForm"
-    (submit)="submit(userForm, nameElement.value, studentIDElement.value)">
-
-    <div>
-      <input name="name"
-          #nameElement
-          #nameModel="ngModel"
-          minlength="2"
-          required
-          pattern="^[a-zA-Z]+$"
-          ngModel
-          placeholder="Name"/>
-      <p *ngIf="nameModel.touched && nameModel.invalid">Letters only, 2 characters minimum!</p>
-    </div>
-
-    <br/>
-
-    <div>
-      <input name="studentID"
-          #studentIDElement
-          #studentIDModel="ngModel"
-          required
-          
-          ngModel
-          placeholder="Student ID"
-          (click)="changeErrorAlert()"/>
-      <p *ngIf="studentIDModel.touched && studentIDModel.invalid">Invalid student ID!</p>
-      <p *ngIf="errorAlert">Invalid student ID! Check your ID.</p>
-
-    </div>
-
-    <br/><br/>
-
-    <button 
-    [disabled]="userForm.valid === false">Start</button>
-</form> 
-
+  <app-user-form>
+  </app-user-form>
+  
 </div>

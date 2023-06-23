@@ -4,12 +4,31 @@ background-image: url("./assets/image/pixgreen.png");
 
 }
 
-ngx-snake {
+ngx-snake.normal {
     ngx-snake-tile {
         background: darkgray;
         &.free {
             div {
                 background: rgb(238, 233, 233);
+            }
+        }
+    }
+}
+
+ngx-snake.black-and-white {
+    ngx-snake-tile {
+        background: white;
+        &.free {
+            div {
+                background: white;
+            }
+        }
+        &.head,
+        &.tail,
+        &.food,
+        &.body {
+            div {
+                background: #000000;
             }
         }
     }

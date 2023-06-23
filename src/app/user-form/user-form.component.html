@@ -1,0 +1,38 @@
+
+<form [formGroup]="userForm"
+    (submit)="submit(userForm)">
+
+    <div>
+      <input 
+          name="name"
+          formControlName="name"
+          pattern="^[a-zA-Z]+$"
+          placeholder="Name"/>
+      <p *ngIf="nameGetter.touched && nameGetter.invalid">Letters only, 2 characters minimum!</p>
+    </div>
+
+    <br/>
+
+    <div>
+      <input 
+          name="studentID"
+          formControlName="studentID"
+          placeholder="Student ID"
+          (click)="changeErrorAlert()"/>
+      <p *ngIf="studentIDGetter.touched && studentIDGetter.invalid">Invalid student ID!</p>
+      <p *ngIf="errorAlert">Invalid student ID! Check your ID.</p>
+    </div>
+    
+    <div>
+      <label>Choose color palette:</label>
+      <select
+        name="color"
+        formControlName="color">
+        <option *ngFor="let color of avaliableColorPalettes">{{color}}</option>
+      </select>
+    </div>
+    <br/><br/>
+
+    <button 
+    [disabled]="userForm.valid === false">Start</button>
+</form> 

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import { PlayerDataService } from '../player-data.service';
 import { ScoreService } from '../score.service';
 export interface GameActions {
@@ -25,10 +25,15 @@ enum Actions {
   styleUrls: ['./game-page.component.scss']
 })
 export class GamePageComponent {
+  public avaliableColorPalettes = [
+    'normal',
+    'high contrast'
+  ]
+  public color: string
   public playerName: string
   public playerID: string
   public gameStatus: string = "Press START and lets play!";
-  public points: number = 123;
+  public points: number = 0;
   public time: number = 0;
   public timer: any;
   public enabledButtons: boolean = true;
@@ -39,15 +44,17 @@ export class GamePageComponent {
   public playerScore: any = {
     name: "",
     game: "snake",
-    score: 0
+    score: 0,
   }
-  constructor(private _router: Router, private _playerData: PlayerDataService, private _playerScore: ScoreService) { 
+  constructor(private _router: Router, private _route: ActivatedRoute, private _playerData: PlayerDataService, private _playerScore: ScoreService) { 
+    this._route.params.subscribe (params => {
+      this.color = params['color']
+      console.log(this.color)
+    })
     this.playerName = this._playerData.readPlayerName();
     this.playerID = this._playerData.readPlayerID().toString()
   }
   
- 
-
   public startAndCountdown() {
     this.gameStatus = "Game started!"
     this.timer = setInterval(() => {
@@ -66,7 +73,6 @@ export class GamePageComponent {
     this.playerScore.name = this.playerName;
     this.playerScore.score = this.points;
     this._playerScore.load(this.playerScore, this.playerID).subscribe()
-    console.log()
     this.endGame(Actions.Reset, true)
   }
 
@@ -117,5 +123,12 @@ export class GamePageComponent {
       }
     ]
   }
+
+  onColorChange(event: any): void {
+    const color = event.target.value;
+    this._router.navigate(['/game-page', color], {
+        relativeTo: this._route
+    });
+}
 
 } 

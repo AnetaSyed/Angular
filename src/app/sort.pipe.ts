@@ -18,13 +18,23 @@ import { GameActions } from './game-page/game-page.component';
 // }
 
 export class SortPipe implements PipeTransform {
-  transform(values: any, field: any,  dir = "asc") {
-    
-    return values.sort((a: any, b: any) => {
-      if (dir === "asc") {
-        return a[field] - b[field];
+  transform(value: any, field: any,  dir = "asc") {
+  
+      if (typeof value[0] === 'number') {
+        return value.sort((a: any, b: any) => {
+          if (dir === "asc") {
+                return a - b
+              }
+                return b - a;
+          })
+      } else if (typeof value[0] === 'object') {
+       return value.sort((a: any, b: any) => {
+        if (dir === "asc") {
+              return a[field] - b[field]
+            }
+              return b[field] - a[field];
+          });
       }
-      return b[field] - a[field];
-    });
+  
   }
 }

@@ -12,12 +12,10 @@ export class HighscoresComponent implements OnInit {
 
   constructor(private _highscores: HighscoresService) {
     this._highscores.load().subscribe((result) => {
-      this.highscoresData = result
+      this.highscoresData = result.sort((a, b) => b.score - a.score);
       })
    }
 
   ngOnInit(): void {
   }
-
-
 }

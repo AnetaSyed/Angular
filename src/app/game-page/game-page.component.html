@@ -12,6 +12,7 @@
         <ngx-snake #game
         (foodEaten)="pointsCounter()"
         (gameOver)="gameOver()"
+        [ngClass]="color === 'normal' ? 'normal' : 'black-and-white'"
         ></ngx-snake>
     </div>
 
@@ -25,6 +26,13 @@
         <button (click)="game.actionRight(); addRightAction()" [disabled]="!enabledButtons" >Right</button>
         <button (click)="game.actionDown(); addDownAction()" [disabled]="!enabledButtons" >Down</button>
     </div>
+
+    <div>
+        <label>Choose color palette:</label>
+        <select (change)="onColorChange($event)">
+          <option *ngFor="let color of avaliableColorPalettes">{{color}}</option>
+        </select>
+      </div>
 
     <div class="float">
         <div class="history-view">
@@ -60,5 +68,6 @@
     </div>
     </div>
     <app-highscores></app-highscores>
+    <app-my-scores [score]="playerScore.score" [playerName]="playerName"></app-my-scores>
     <button id="exit" (click)="goToIntroPage()">Exit</button>
 </div>
